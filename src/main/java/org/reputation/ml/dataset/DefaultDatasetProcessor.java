@@ -65,7 +65,7 @@ public class DefaultDatasetProcessor extends AbstractDatasetProcessor {
                                              boolean isGoodClazz) {
         DenseInstance instance = new DenseInstance(dataset.numAttributes());
         instance.setDataset(dataset);
-        for (int i = 0; i < extractors.size() - 1; i++) {
+        for (int i = 0; i < extractors.size(); i++) {
             FeatureExtractor extractor = extractors.get(i);
             instance.setValue(i, extractor.extract(url));
         }
