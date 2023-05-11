@@ -1,8 +1,8 @@
-package org.reputation.ml.extractors;
+package org.reputation.ml.extractor;
 
 import org.reputation.ml.FeatureExtractor;
 
-public class HttpsProtocolExtractor implements FeatureExtractor {
+public class HttpsProtocolExtractorComponent implements FeatureExtractor {
 
     private static final String HTTPS_PREFIX = "https";
 

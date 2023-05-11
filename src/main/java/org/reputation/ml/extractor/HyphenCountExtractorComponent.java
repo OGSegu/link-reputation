@@ -1,9 +1,9 @@
-package org.reputation.ml.extractors;
+package org.reputation.ml.extractor;
 
 import com.google.common.base.CharMatcher;
 import org.reputation.ml.FeatureExtractor;
 
-public class HyphenCountExtractor implements FeatureExtractor {
+public class HyphenCountExtractorComponent implements FeatureExtractor {
 
     @Override
     public double extract(String url) {

@@ -1,14 +1,13 @@
-package org.reputation.ml.extractors;
+package org.reputation.ml.extractor;
 
-import com.google.common.collect.ImmutableSet;
 import org.reputation.ml.FeatureExtractor;
 
 import java.util.Set;
 
-public class SpecialSymbolsCountExtractor implements FeatureExtractor {
+public class SpecialSymbolsCountExtractorComponent implements FeatureExtractor {
 
     //TODO configured
-    private static final Set<Character> SYMBOLS = ImmutableSet.of('?', '.', '%', '=');
+    private static final Set<Character> SYMBOLS = Set.of('?', '.', '%', '=', '@');
 
     @Override
     public double extract(String url) {
