@@ -11,16 +11,16 @@ public abstract class AbstractDatasetProcessor {
 
     protected final int dataPerClazzLimit;
     protected final String dataClazzSeparator;
-    protected final String benignClazzText;
+    protected final String goodClazzText;
 
     protected AbstractDatasetProcessor(FeatureExtractorComponent featureExtractorComponent,
                                        int dataPerClazzLimit,
                                        String dataClazzSeparator,
-                                       String benignClazzText) {
+                                       String goodClazzText) {
         this.featureExtractorComponent = featureExtractorComponent;
         this.dataPerClazzLimit = dataPerClazzLimit;
         this.dataClazzSeparator = dataClazzSeparator;
-        this.benignClazzText = benignClazzText;
+        this.goodClazzText = goodClazzText;
     }
 
     protected abstract Instances getDataSet(List<String> urls);
@@ -29,7 +29,7 @@ public abstract class AbstractDatasetProcessor {
         return dataClazzSeparator;
     }
 
-    public String getBenignClazzText() {
-        return benignClazzText;
+    public String getGoodClazzText() {
+        return goodClazzText;
     }
 }
