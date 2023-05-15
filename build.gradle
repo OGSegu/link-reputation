@@ -1,5 +1,10 @@
 plugins {
     id 'java'
+    id "me.champeau.jmh" version "0.7.1"
+}
+
+jmh {
+    duplicateClassesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 group 'org.reputation'
@@ -8,6 +13,7 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

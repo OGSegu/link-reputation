@@ -10,13 +10,13 @@ class ModelBenchmarkTest {
     @Test
     void test() throws Exception {
         List<Double> blackHolelist = new ArrayList<>();
-        MLClassifierComponentImpl randomForest = new MLClassifierComponentImpl(() -> "naivebayess.model");
+        MLClassifierComponentImpl randomForest = new MLClassifierComponentImpl(() -> "adaboostm1.model");
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 10_000; i++) {
             String url = RandomStringUtils.randomAlphabetic(10, 30);
             double result = randomForest.classify(url);
             blackHolelist.add(result);
-            System.out.printf("%,.2f%n", result);
+            //System.out.printf("%,.2f%n", result);
         }
         long endTime = System.currentTimeMillis() - startTime;
         System.out.println(endTime);

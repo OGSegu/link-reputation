@@ -1,5 +1,6 @@
 package org.reputation.ml.classifier;
 
+import com.google.common.annotations.VisibleForTesting;
 import org.reputation.ml.FeatureExtractor;
 import org.reputation.ml.FeatureExtractorComponent;
 import org.reputation.ml.FeatureExtractorComponentImpl;
@@ -7,7 +8,9 @@ import org.reputation.ml.config.MLClassifierConfig;
 import weka.classifiers.Classifier;
 import weka.core.*;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,6 +24,16 @@ public class MLClassifierComponentImpl implements MLClassifierComponent {
     public MLClassifierComponentImpl(MLClassifierConfig config) throws Exception {
         this.config = config;
         this.classifier = (Classifier) SerializationHelper.read(config.getModelPath());
+        this.featureExtractorComponent = new FeatureExtractorComponentImpl();
+    }
+
+    /**
+     * Only for testing purpose, don't use it in your logic
+     */
+    @VisibleForTesting
+    public MLClassifierComponentImpl(InputStream modelStream) throws Exception {
+        this.config = null;
+        this.classifier = (Classifier) SerializationHelper.read(modelStream);
         this.featureExtractorComponent = new FeatureExtractorComponentImpl();
     }
 
@@ -41,19 +54,15 @@ public class MLClassifierComponentImpl implements MLClassifierComponent {
     private Instances getDataset() {
         List<FeatureExtractor> extractors = featureExtractorComponent.getExtractors();
         ArrayList<Attribute> attributes = new ArrayList<>();
-        attributes.add(new Attribute("class"));
         extractors.forEach(extractor -> attributes.add(new Attribute(extractor.featureName())));
-//        System.out.printf("Attributes added: [%s]%n", attributes);
+        attributes.add(new Attribute("class", Arrays.asList("good", "malicious")));
         Instances instances = new Instances("dataset", attributes, 0);
-        instances.setClassIndex(0);
+        instances.setClassIndex(instances.numAttributes() - 1);
         return instances;
     }
 
     private Instance from(String url) {
         Map<String, Double> featuresToValue = featureExtractorComponent.extract(url);
-//        System.out.printf("Extracted features: [%s]%n",
-//                Joiner.on(",").withKeyValueSeparator("=").join(featuresToValue));
-        // features[0] is a class attribute
         double[] features = new double[featuresToValue.size() + 1];
         AtomicInteger idx = new AtomicInteger(1);
         featuresToValue.forEach((name,value)
