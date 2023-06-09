@@ -1,6 +1,6 @@
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
-import org.reputation.ml.classifier.MLClassifierComponentImpl;
+import org.reputation.core.classifier.MLClassifierComponentImpl;
 
 import java.util.ArrayList;
 import java.util.List;

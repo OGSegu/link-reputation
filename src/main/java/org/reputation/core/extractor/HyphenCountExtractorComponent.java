@@ -1,7 +1,7 @@
-package org.reputation.ml.extractor;
+package org.reputation.core.extractor;
 
 import com.google.common.base.CharMatcher;
-import org.reputation.ml.FeatureExtractor;
+import org.reputation.core.FeatureExtractor;
 
 public class HyphenCountExtractorComponent implements FeatureExtractor {
 

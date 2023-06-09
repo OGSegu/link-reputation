@@ -1,4 +1,4 @@
-package org.reputation.ml;
+package org.reputation.core;
 
 import java.util.List;
 import java.util.Map;

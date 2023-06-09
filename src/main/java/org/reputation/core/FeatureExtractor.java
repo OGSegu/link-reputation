@@ -1,4 +1,4 @@
-package org.reputation.ml;
+package org.reputation.core;
 
 public interface FeatureExtractor {
 

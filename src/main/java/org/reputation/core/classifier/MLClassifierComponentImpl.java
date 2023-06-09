@@ -1,10 +1,10 @@
-package org.reputation.ml.classifier;
+package org.reputation.core.classifier;
 
 import com.google.common.annotations.VisibleForTesting;
-import org.reputation.ml.FeatureExtractor;
-import org.reputation.ml.FeatureExtractorComponent;
-import org.reputation.ml.FeatureExtractorComponentImpl;
-import org.reputation.ml.config.MLClassifierConfig;
+import org.reputation.core.FeatureExtractor;
+import org.reputation.core.FeatureExtractorComponent;
+import org.reputation.core.FeatureExtractorComponentImpl;
+import org.reputation.core.config.MLClassifierConfig;
 import weka.classifiers.Classifier;
 import weka.core.*;
 

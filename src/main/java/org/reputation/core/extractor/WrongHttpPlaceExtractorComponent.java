@@ -1,6 +1,6 @@
-package org.reputation.ml.extractor;
+package org.reputation.core.extractor;
 
-import org.reputation.ml.FeatureExtractor;
+import org.reputation.core.FeatureExtractor;
 
 import java.util.regex.Pattern;
 

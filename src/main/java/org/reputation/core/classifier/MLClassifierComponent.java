@@ -1,4 +1,4 @@
-package org.reputation.ml.classifier;
+package org.reputation.core.classifier;
 
 public interface MLClassifierComponent {
 

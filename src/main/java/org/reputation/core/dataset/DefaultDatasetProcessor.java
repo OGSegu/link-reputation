@@ -1,7 +1,7 @@
-package org.reputation.ml.dataset;
+package org.reputation.core.dataset;
 
-import org.reputation.ml.FeatureExtractor;
-import org.reputation.ml.FeatureExtractorComponent;
+import org.reputation.core.FeatureExtractor;
+import org.reputation.core.FeatureExtractorComponent;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
