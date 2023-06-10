@@ -14,8 +14,8 @@ import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
-import org.reputation.persistence.LinkReputationCache;
-import org.reputation.persistence.LinkReputationCacheWithBloomFilter;
+import org.reputation.persistence.UrlReputationCache;
+import org.reputation.persistence.UrlReputationCacheWithBloomFilter;
 import org.reputation.persistence.сonfig.BloomFilterConfig;
 import org.reputation.persistence.сonfig.LinkReputationCacheConfig;
 
@@ -32,7 +32,7 @@ public class CacheBenchmarkPlan {
 
     public List<Pair<String, Double>> urlToPrediction = new ArrayList<>();
 
-    public LinkReputationCache cache;
+    public UrlReputationCache cache;
 
     @Param({"true", "false"})
     public boolean useBloomFilter;
@@ -54,8 +54,11 @@ public class CacheBenchmarkPlan {
             urlToPrediction.add(Pair.of(url, prediction));
         }
         this.cache = useBloomFilter
-                ? new LinkReputationCacheWithBloomFilter(cacheConfig, getBloomFilterConfig())
-                : new LinkReputationCache(cacheConfig);
+                ? new UrlReputationCacheWithBloomFilter(cacheConfig, getBloomFilterConfig())
+                : new UrlReputationCache(cacheConfig);
+        if (useBloomFilter) {
+            ((UrlReputationCacheWithBloomFilter) cache).init();
+        }
     }
 
 

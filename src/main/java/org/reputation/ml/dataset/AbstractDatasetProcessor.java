@@ -1,6 +1,6 @@
-package org.reputation.core.dataset;
+package org.reputation.ml.dataset;
 
-import org.reputation.core.FeatureExtractorComponent;
+import org.reputation.ml.FeatureExtractorComponent;
 import weka.core.Instances;
 
 import java.util.List;

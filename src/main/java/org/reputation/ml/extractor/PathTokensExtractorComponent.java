@@ -1,7 +1,7 @@
-package org.reputation.core.extractor;
+package org.reputation.ml.extractor;
 
 import com.google.common.base.CharMatcher;
-import org.reputation.core.FeatureExtractor;
+import org.reputation.ml.FeatureExtractor;
 
 public class PathTokensExtractorComponent implements FeatureExtractor {
     @Override

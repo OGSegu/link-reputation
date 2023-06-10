@@ -1,4 +1,4 @@
-package org.reputation.core.config;
+package org.reputation.ml.config;
 
 public interface MLClassifierConfig {
 

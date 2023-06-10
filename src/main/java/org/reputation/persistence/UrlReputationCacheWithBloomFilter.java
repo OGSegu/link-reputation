@@ -10,15 +10,14 @@ import com.google.common.hash.Funnels;
 
 import one.nio.mem.OffheapMap;
 
-public class LinkReputationCacheWithBloomFilter extends LinkReputationCache {
+public class UrlReputationCacheWithBloomFilter extends UrlReputationCache {
 
     private static final double EXPECTED_INSERTIONS_DIVIDER = 1.75;
-
     private final BloomFilterConfig bloomFilterConfig;
     private final BloomFilter<String> bloomFilter;
 
-    public LinkReputationCacheWithBloomFilter(LinkReputationCacheConfig cacheConfig,
-                                              BloomFilterConfig bloomFilterConfig) throws IOException {
+    public UrlReputationCacheWithBloomFilter(LinkReputationCacheConfig cacheConfig,
+                                             BloomFilterConfig bloomFilterConfig) throws IOException {
         super(cacheConfig);
         this.bloomFilterConfig = bloomFilterConfig;
         this.bloomFilter = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8),
@@ -33,7 +32,6 @@ public class LinkReputationCacheWithBloomFilter extends LinkReputationCache {
         } else {
             sharedMemoryMap.iterate(new BloomFilterInitializationVisitor(bloomFilter), workersAmountToInit);
         }
-        System.out.println("Bloom filter initialized");
     }
 
     @Override

@@ -4,12 +4,12 @@ import java.io.IOException;
 import javax.annotation.Nullable;
 import org.reputation.persistence.сonfig.LinkReputationCacheConfig;
 
-public class LinkReputationCache {
+public class UrlReputationCache {
 
-    protected final SharedMemoryLinkReputationMap sharedMemoryMap;
+    protected final SharedMemoryUrlReputationMap sharedMemoryMap;
 
-    public LinkReputationCache(LinkReputationCacheConfig cacheConfig) throws IOException {
-        this.sharedMemoryMap = new SharedMemoryLinkReputationMap(cacheConfig.getCapacity(), cacheConfig.getFileName(),
+    public UrlReputationCache(LinkReputationCacheConfig cacheConfig) throws IOException {
+        this.sharedMemoryMap = new SharedMemoryUrlReputationMap(cacheConfig.getCapacity(), cacheConfig.getFileName(),
                 cacheConfig.getFileSize(), cacheConfig.getExpirationTime());
     }
 
@@ -29,7 +29,7 @@ public class LinkReputationCache {
     /**
      * <b>!!! CAREFUL !!! This method must be called before application shutdown, otherwise cache will be corrupted</b>
      */
-    public void close() {
+    public final void close() {
         sharedMemoryMap.close();
     }
 

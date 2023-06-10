@@ -1,6 +1,6 @@
-package org.reputation.core;
+package org.reputation.ml;
 
-import org.reputation.core.extractor.*;
+import org.reputation.ml.extractor.*;
 
 import java.util.HashMap;
 import java.util.List;

@@ -2,8 +2,8 @@ package org.reputation.jmh.model;
 
 
 import org.openjdk.jmh.annotations.*;
-import org.reputation.core.classifier.MLClassifierComponent;
-import org.reputation.core.classifier.MLClassifierComponentImpl;
+import org.reputation.ml.classifier.MLClassifierComponent;
+import org.reputation.ml.classifier.MLClassifierComponentImpl;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

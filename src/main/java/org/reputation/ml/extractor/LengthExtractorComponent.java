@@ -1,6 +1,6 @@
-package org.reputation.core.extractor;
+package org.reputation.ml.extractor;
 
-import org.reputation.core.FeatureExtractor;
+import org.reputation.ml.FeatureExtractor;
 
 public class LengthExtractorComponent implements FeatureExtractor {
     @Override
