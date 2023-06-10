@@ -5,6 +5,7 @@ import org.reputation.ml.FeatureExtractor;
 import org.reputation.ml.FeatureExtractorComponent;
 import org.reputation.ml.FeatureExtractorComponentImpl;
 import org.reputation.ml.config.MLClassifierConfig;
+import org.reputation.ml.exception.ClassificationFailedException;
 import weka.classifiers.Classifier;
 import weka.core.*;
 
@@ -38,16 +39,17 @@ public class MLClassifierComponentImpl implements MLClassifierComponent {
     }
 
     @Override
-    public double classify(String url) {
+    public double classify(String url) throws ClassificationFailedException {
         try {
             Instances dataset = getDataset();
             Instance data = from(url);
             data.setDataset(dataset);
             data.setClassMissing();
             dataset.add(data);
-            return 1 - classifier.classifyInstance(dataset.instance(0));
+            double[] distribution = classifier.distributionForInstance(dataset.instance(0));
+            return distribution[1];
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new ClassificationFailedException(url, e);
         }
     }
 

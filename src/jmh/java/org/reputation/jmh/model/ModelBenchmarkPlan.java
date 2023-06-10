@@ -1,4 +1,4 @@
-package org.reputation.jmh;
+package org.reputation.jmh.model;
 
 
 import org.openjdk.jmh.annotations.*;
@@ -14,7 +14,7 @@ import java.util.List;
 @State(Scope.Benchmark)
 public class ModelBenchmarkPlan {
 
-    private static final int LIMIT_URLS = 100_000;
+    private static final int URLS_AMOUNT = 100_000;
 
     public List<String> urls;
 
@@ -30,7 +30,7 @@ public class ModelBenchmarkPlan {
         InputStream datasetStream = getClass().getClassLoader().getResourceAsStream("data.txt");
         List<String> parsedUrls = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(datasetStream))) {
-            for (int i = 0; i < LIMIT_URLS; i++) {
+            for (int i = 0; i < URLS_AMOUNT; i++) {
                 String line = reader.readLine();
                 if (line == null) {
                     break;

@@ -1,10 +1,12 @@
-package org.reputation.jmh;
+package org.reputation.jmh.model;
 
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.concurrent.TimeUnit;
+
+
 
 @State(Scope.Benchmark)
 public class ModelBenchmark {

@@ -7,6 +7,11 @@ jmh {
     duplicateClassesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 group 'org.reputation'
 version '1.0-SNAPSHOT'
 
@@ -21,6 +26,7 @@ dependencies {
     implementation 'nz.ac.waikato.cms.weka:weka-stable:3.8.6'
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'ru.odnoklassniki:one-nio:1.6.1'
 }
 
 test {
