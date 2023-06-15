@@ -1,12 +1,9 @@
 package org.reputation.ml.extractor;
 
-import org.reputation.ml.FeatureExtractor;
-
 import java.util.Set;
 
 public class SpecialSymbolsCountExtractorComponent implements FeatureExtractor {
 
-    //TODO configured
     private static final Set<Character> SYMBOLS = Set.of('?', '.', '%', '=', '@');
 
     @Override
