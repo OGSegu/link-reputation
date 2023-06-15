@@ -1,9 +1,9 @@
 package org.reputation.ml.classifier;
 
 import com.google.common.annotations.VisibleForTesting;
-import org.reputation.ml.FeatureExtractor;
-import org.reputation.ml.FeatureExtractorComponent;
-import org.reputation.ml.FeatureExtractorComponentImpl;
+import org.reputation.ml.extractor.FeatureExtractor;
+import org.reputation.ml.extractor.FeatureExtractorComponent;
+import org.reputation.ml.extractor.FeatureExtractorComponentImpl;
 import org.reputation.ml.config.MLClassifierConfig;
 import org.reputation.ml.exception.ClassificationFailedException;
 import weka.classifiers.Classifier;
@@ -66,9 +66,11 @@ public class MLClassifierComponentImpl implements MLClassifierComponent {
     private Instance from(String url) {
         Map<String, Double> featuresToValue = featureExtractorComponent.extract(url);
         double[] features = new double[featuresToValue.size() + 1];
-        AtomicInteger idx = new AtomicInteger(1);
+        AtomicInteger idx = new AtomicInteger(0);
         featuresToValue.forEach((name,value)
-                -> features[idx.getAndIncrement()] = value);
+                -> features[idx.getAndIncrement()] = value == -1
+                        ? Utils.missingValue()
+                        : value);
         return new DenseInstance(1.0, features);
     }
 }

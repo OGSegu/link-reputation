@@ -1,16 +1,20 @@
 package org.reputation.ml.dataset;
 
-import org.reputation.ml.FeatureExtractor;
-import org.reputation.ml.FeatureExtractorComponent;
+import org.reputation.ml.extractor.FeatureExtractor;
+import org.reputation.ml.extractor.FeatureExtractorComponent;
+import org.reputation.ml.processor.UrlPreprocessor;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
+import weka.core.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DefaultDatasetProcessor extends AbstractDatasetProcessor {
+
+    private final UrlPreprocessor preprocessor = new UrlPreprocessor();
 
     public DefaultDatasetProcessor(FeatureExtractorComponent featureExtractorComponent) {
         super(featureExtractorComponent, 200_000, "\t", "benign");
@@ -59,15 +63,21 @@ public class DefaultDatasetProcessor extends AbstractDatasetProcessor {
         return dataset;
     }
 
-    private static DenseInstance getInstance(List<FeatureExtractor> extractors,
+    private DenseInstance getInstance(List<FeatureExtractor> extractors,
                                              Instances dataset,
                                              String url,
                                              boolean isGoodClazz) {
         DenseInstance instance = new DenseInstance(dataset.numAttributes());
         instance.setDataset(dataset);
+        String preprocessedUrl = preprocessor.preprocess(url);
         for (int i = 0; i < extractors.size(); i++) {
             FeatureExtractor extractor = extractors.get(i);
-            instance.setValue(i, extractor.extract(url));
+            double value = extractor.extract(preprocessedUrl);
+//            if (value == -1) {
+//                System.out.printf("Extractor: [%s] failed to extract from url: [%s]%n",
+//                        extractor.featureName(), preprocessedUrl);
+//            }
+            instance.setValue(i, value == -1 ? Utils.missingValue() : value);
         }
         instance.setValue(dataset.numAttributes() - 1, isGoodClazz ? "good" : "malicious");
         return instance;

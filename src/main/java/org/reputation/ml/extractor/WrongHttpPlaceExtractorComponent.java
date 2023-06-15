@@ -1,7 +1,5 @@
 package org.reputation.ml.extractor;
 
-import org.reputation.ml.FeatureExtractor;
-
 import java.util.regex.Pattern;
 
 public class WrongHttpPlaceExtractorComponent implements FeatureExtractor {

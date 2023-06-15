@@ -22,7 +22,6 @@ public class UrlClassifier implements ClassifierService {
     public double classify(String url) throws ClassificationFailedException {
         Double resultFromCache = cache.get(url);
         if (resultFromCache != null) {
-            // cache hit stat
             return resultFromCache;
         }
         double resultFromClassifier = mlClassifier.classify(url);
