@@ -2,7 +2,6 @@ package org.reputation.ml.extractor;
 
 import com.google.common.base.CharMatcher;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class QueryArgNumbersExtractor implements FeatureExtractor {

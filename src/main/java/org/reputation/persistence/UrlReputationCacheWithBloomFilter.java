@@ -1,20 +1,20 @@
 package org.reputation.persistence;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import javax.annotation.Nullable;
-import org.reputation.persistence.сonfig.BloomFilterConfig;
-import org.reputation.persistence.сonfig.LinkReputationCacheConfig;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
-
 import one.nio.mem.OffheapMap;
+import org.reputation.persistence.сonfig.BloomFilterConfig;
+import org.reputation.persistence.сonfig.LinkReputationCacheConfig;
+
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class UrlReputationCacheWithBloomFilter extends UrlReputationCache {
 
-    private static final double EXPECTED_INSERTIONS_DIVIDER = 1.75;
+    protected static final double EXPECTED_INSERTIONS_DIVIDER = 1.75;
     private final BloomFilterConfig bloomFilterConfig;
-    private final BloomFilter<String> bloomFilter;
+    protected final BloomFilter<String> bloomFilter;
 
     public UrlReputationCacheWithBloomFilter(LinkReputationCacheConfig cacheConfig,
                                              BloomFilterConfig bloomFilterConfig) throws IOException {
@@ -52,7 +52,7 @@ public class UrlReputationCacheWithBloomFilter extends UrlReputationCache {
         return super.get(url);
     }
 
-    private static class BloomFilterInitializationVisitor implements OffheapMap.Visitor<String, Double> {
+    protected static class BloomFilterInitializationVisitor implements OffheapMap.Visitor<String, Double> {
 
         private final BloomFilter<String> bloomFilter;
 

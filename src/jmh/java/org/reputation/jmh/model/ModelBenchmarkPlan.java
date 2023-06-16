@@ -20,7 +20,7 @@ public class ModelBenchmarkPlan {
 
     public MLClassifierComponent mlClassifierComponent;
 
-    @Param({"bayess.model", "adaboostm1.model", "logistic.model", "rndforest.model", "sgd.model", "perceptron.model"})
+    @Param({"rndforest_16features.model", "bayess_16features.model", "perceptron_16features.model", "adaboostm1_16features.model", "logistic_16features.model", "sgd_16features.model"})
     public String modelName;
 
 

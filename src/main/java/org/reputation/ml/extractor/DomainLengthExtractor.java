@@ -1,7 +1,5 @@
 package org.reputation.ml.extractor;
 
-import java.net.MalformedURLException;
-
 public class DomainLengthExtractor implements FeatureExtractor, DomainExtractor {
     @Override
     public double extract(String url) {

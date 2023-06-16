@@ -38,6 +38,16 @@ public class MLClassifierComponentImpl implements MLClassifierComponent {
         this.featureExtractorComponent = new FeatureExtractorComponentImpl();
     }
 
+    /**
+     * Only for testing purpose, don't use it in your logic
+     */
+    @VisibleForTesting
+    public MLClassifierComponentImpl(Classifier classifier) throws Exception {
+        this.config = null;
+        this.classifier = classifier;
+        this.featureExtractorComponent = new FeatureExtractorComponentImpl();
+    }
+
     @Override
     public double classify(String url) throws ClassificationFailedException {
         try {
@@ -53,7 +63,7 @@ public class MLClassifierComponentImpl implements MLClassifierComponent {
         }
     }
 
-    private Instances getDataset() {
+    Instances getDataset() {
         List<FeatureExtractor> extractors = featureExtractorComponent.getExtractors();
         ArrayList<Attribute> attributes = new ArrayList<>();
         extractors.forEach(extractor -> attributes.add(new Attribute(extractor.featureName())));
@@ -63,7 +73,7 @@ public class MLClassifierComponentImpl implements MLClassifierComponent {
         return instances;
     }
 
-    private Instance from(String url) {
+    Instance from(String url) {
         Map<String, Double> featuresToValue = featureExtractorComponent.extract(url);
         double[] features = new double[featuresToValue.size() + 1];
         AtomicInteger idx = new AtomicInteger(0);
