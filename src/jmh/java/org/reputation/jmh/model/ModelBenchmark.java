@@ -3,6 +3,7 @@ package org.reputation.jmh.model;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
+import org.reputation.ml.exception.ClassificationFailedException;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,11 +18,10 @@ public class ModelBenchmark {
     @Measurement(iterations = 1)
     @OutputTimeUnit(TimeUnit.SECONDS)
     @BenchmarkMode(Mode.Throughput)
-    public void modelBench(Blackhole bh, ModelBenchmarkPlan plan) {
+    public void modelBench(Blackhole bh, ModelBenchmarkPlan plan) throws ClassificationFailedException {
         for (String url : plan.urls) {
             double result = plan.mlClassifierComponent.classify(url);
             bh.consume(result);
         }
     }
-
 }

@@ -1,6 +1,5 @@
 package org.reputation.ml.extractor;
 
-import java.net.MalformedURLException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DomainNonAlphanumericCharsNumberExtractor implements FeatureExtractor, DomainExtractor{

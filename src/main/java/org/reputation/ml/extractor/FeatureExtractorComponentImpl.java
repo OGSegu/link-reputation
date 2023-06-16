@@ -1,7 +1,9 @@
 package org.reputation.ml.extractor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.reputation.ml.processor.UrlPreprocessor;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +38,9 @@ public class FeatureExtractorComponentImpl implements FeatureExtractorComponent 
 
     @Override
     public Map<String, Double> extract(String url) {
+        if (StringUtils.isBlank(url)) {
+            return Collections.emptyMap();
+        }
         String preprocessedUrl = preprocessor.preprocess(url);
         Map<String, Double> result = new LinkedHashMap<>(extractors.size());
         for (FeatureExtractor extractor : extractors) {

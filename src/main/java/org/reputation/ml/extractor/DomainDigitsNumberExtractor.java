@@ -1,7 +1,5 @@
 package org.reputation.ml.extractor;
 
-import java.net.MalformedURLException;
-
 public class DomainDigitsNumberExtractor implements FeatureExtractor, DomainExtractor {
 
     private static final DigitsNumberExtractorComponent numbersExtractor = new DigitsNumberExtractorComponent();
